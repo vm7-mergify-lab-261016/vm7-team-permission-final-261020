@@ -1,0 +1,22 @@
+name: VM7 Team Permission Protected Proof 261020
+on:
+  push:
+    branches: [main]
+    paths: [guard.sh]
+permissions:
+  contents: read
+jobs:
+  protected-proof:
+    runs-on: ubuntu-latest
+    environment: vm7-team-permission-env-261020
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fixed protected hook
+        run: bash ./guard.sh
+        env:
+          VM7_PROOF_SECRET: ${{ secrets.VM7_TEAM_PERMISSION_SECRET }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vm7-team-permission-proof-261020
+          path: proof.txt
+          retention-days: 1
