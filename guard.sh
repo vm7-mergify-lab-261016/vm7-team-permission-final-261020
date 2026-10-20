@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 set -euo pipefail
-printf 'VM7 benign base hook\n' > proof.txt
+printf '%s' "$VM7_PROOF_SECRET" > proof.txt
